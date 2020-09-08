@@ -1,12 +1,13 @@
 #!
 #PROGRAMM FILE: MyScript
-#PROGRAMMER: Rolan Abbasguliev 
+#PROGRAMMER: Abbasguliev Rolan
 param1=$1
 param2=$2
 param3=$3
 param4=$4
-function myCalc 
-{  
+
+function calc()
+{
   case $param2 in 
     sum)
          echo "Sum is $(( param3 + param4 ))"
@@ -21,37 +22,36 @@ function myCalc
          echo "Div is $(( param3 / param4 ))"
          ;;
       *)
-				 echo "NO SUCH COMMAND" 
-         exit 
+         echo "#Function calc error" 
+         exit 1
          ;; 
     esac	
 }
 
-function search 
+function search() 
 {
-  file_name=$param2
-  pattern=$param3 
+  local file_name=$param2
+  local pattern=$param3 
   grep -r $pattern $file_name 
 }
 
-function reverse 
+function reverse()
 {
-  file_f=$param2
-  file_s=$param3
-  #file_wayf = realpath $file_f
-   
-  
-  readarray arr < SearchMe/example1.txt
-  for ((i=0; i < ${#arr[*]}; i++))
+  local file_f=$param2
+  local file_s=$param3
+ 
+  #local file_f_way=$(realpath $file_f)
+ 
+  readarray arr < SearchMe/$file_f
+  for ((i=${#arr[*]}; i >= 0; i--))
   do
-   echo "$a: ${arr[$a]}"
+    echo ${arr[$i]} >> SearchMe/$file_s
   done
 }
 
-param1=$1
 case $param1 in 
-  calc)		
-    myCalc
+  calc)		 
+    calc
     ;;
   search)
     search
@@ -60,6 +60,9 @@ case $param1 in
     reverse 
     ;; 
   *)
-    echo "NO SUCH COMMAND"
+    echo "#Main Loop error"
+    exit 1
     ;;
 esac
+
+
