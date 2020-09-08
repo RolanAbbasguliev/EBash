@@ -1,0 +1,44 @@
+#!
+#PROGRAMM FILE: MyScript
+#PROGRAMMER: Rolan Abbasguliev 
+param1=$1
+param2=$2
+param3=$3
+param4=$4
+function myCalc 
+{  
+  case $param2 in 
+    sum)
+         echo "Sum is $(( param3 + param4 ))"
+         ;;
+    sub)
+         echo "Sub is $(( param3 - param4 ))"
+         ;;
+    mul) 
+         echo "Mul is $(( param3 * param4 ))"
+         ;;
+    div)
+         echo "Div is $(( param3 / param4 ))"
+         ;;
+      *) echo "NO SUCH COMMAND" 
+         exit 
+         ;; 
+    esac	
+  
+}
+function search 
+{
+}
+
+param1=$1
+case $param1 in 
+  calc)
+    myCalc
+    ;;
+  search)
+     searh
+    
+  *) 
+    echo "NO SUCH COMMAND"
+    exit 1
+esac
