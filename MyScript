@@ -17,28 +17,49 @@ function myCalc
     mul) 
          echo "Mul is $(( param3 * param4 ))"
          ;;
-    div)
+    div)			 	
          echo "Div is $(( param3 / param4 ))"
          ;;
-      *) echo "NO SUCH COMMAND" 
+      *)
+				 echo "NO SUCH COMMAND" 
          exit 
          ;; 
     esac	
-  
 }
+
 function search 
 {
+  file_name=$param2
+  pattern=$param3 
+  grep -r $pattern $file_name 
+}
+
+function reverse 
+{
+  file_f=$param2
+  file_s=$param3
+  #file_wayf = realpath $file_f
+   
+  
+  readarray arr < SearchMe/example1.txt
+  for ((i=0; i < ${#arr[*]}; i++))
+  do
+   echo "$a: ${arr[$a]}"
+  done
 }
 
 param1=$1
 case $param1 in 
-  calc)
+  calc)		
     myCalc
     ;;
   search)
-     searh
-    
-  *) 
+    search
+    ;;
+  reverse)
+    reverse 
+    ;; 
+  *)
     echo "NO SUCH COMMAND"
-    exit 1
+    ;;
 esac
