@@ -40,6 +40,7 @@ function reverse()
   local file_f=$param2
   local file_s=$param3
  
+
   #local file_f_way=$(realpath $file_f)
  
   readarray arr < SearchMe/$file_f
@@ -49,6 +50,26 @@ function reverse()
   done
 }
 
+function strlen()
+{
+ echo | awk -v str="$param2"  '{ print "String: " str } 
+                  	       { print "String length:\t" length(str) }'
+}
+function help()
+{
+  clear
+  echo  "
+                                       MANUAL
+        ===================================================================
+        calc    - sum/sub/mul/dib [num1] [num2]  /* calculating numbers  */
+
+        search  - [dir_name]  [reg_expresion]    /* search expresion type 
+                                                    in direcroty files   */   
+        reverse -
+
+        ===================================================================
+  "
+}
 case $param1 in 
   calc)		 
     calc
@@ -58,7 +79,26 @@ case $param1 in
     ;;
   reverse)
     reverse 
-    ;; 
+    ;;
+  strlen)
+    strlen 
+    ;;
+  log) 
+    log 
+    ;;
+  exit)
+    if [ -z "$param2" ]
+    then 
+      echo "exit code: 0"
+      exit 0
+    else
+      echo "exit code: $param2"
+      exit $param2
+    fi  
+    ;;
+  help)
+    help 
+    ;;  
   *)
     echo "#Main Loop error"
     exit 1
