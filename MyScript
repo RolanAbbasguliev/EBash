@@ -6,20 +6,20 @@ param2=$2
 param3=$3
 param4=$4
 
-function calc()
+calc()
 {
   case $param2 in 
     sum)
-         echo "Sum is $(( param3 + param4 ))"
+         echo "Sum is: $(( param3 + param4 ))"
          ;;
     sub)
-         echo "Sub is $(( param3 - param4 ))"
+         echo "Sub is: $(( param3 - param4 ))"
          ;;
     mul) 
-         echo "Mul is $(( param3 * param4 ))"
+         echo "Mul is: $(( param3 * param4 ))"
          ;;
     div)			 	
-         echo "Div is $(( param3 / param4 ))"
+         echo "Div is: $(( param3 / param4 ))"
          ;;
       *)
          echo "#Function calc error" 
@@ -28,21 +28,18 @@ function calc()
     esac	
 }
 
-function search() 
+search() 
 {
   local file_name=$param2
   local pattern=$param3 
   grep -r $pattern $file_name 
 }
 
-function reverse()
+reverse()
 {
   local file_f=$param2
   local file_s=$param3
- 
-
-  #local file_f_way=$(realpath $file_f)
- 
+  
   readarray arr < SearchMe/$file_f
   for ((i=${#arr[*]}; i >= 0; i--))
   do
@@ -50,24 +47,30 @@ function reverse()
   done
 }
 
-function strlen()
+strlen()
 {
  echo | awk -v str="$param2"  '{ print "String: " str } 
                   	       { print "String length:\t" length(str) }'
 }
-function help()
+help()
 {
   clear
   echo  "
-                                       MANUAL
-        ===================================================================
-        calc    - sum/sub/mul/dib [num1] [num2]  /* calculating numbers  */
+                                         MANUAL
+        ======================================================================
+        calc    - sum/sub/mul/dib [num1] [num2]  /* calculating numbers     */
 
         search  - [dir_name]  [reg_expresion]    /* search expresion type 
-                                                    in direcroty files   */   
-        reverse -
+                                                    in direcroty files      */   
+        reverse - [file_name1] [file_name2]      /* reverse copy from   
+                                                     file1 -> file2         */
+        strlen  -  string                        /* string length           */
+    
+        log     -   
+      
+        exit    -  [return code]                 /* exit programm with code */   
 
-        ===================================================================
+        ======================================================================
   "
 }
 case $param1 in 
