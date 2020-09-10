@@ -6,23 +6,32 @@ param2=$2
 param3=$3
 param4=$4
 
+# COLORS # 
+RED='\033[1;31m'
+LBLUE='\033[1;34m'
+WHITE='\033[1;37m'
+YELLOW='\033[1;33m'
+ORANGE='\033[0;33m'
+NC='\033[0m'
+
+
 calc()
 {
   case $param2 in 
     sum)
-         echo "Sum is: $(( param3 + param4 ))"
+         echo "RESULT: $(( param3 + param4 ))"
          ;;
     sub)
-         echo "Sub is: $(( param3 - param4 ))"
+         echo "RESULT: $(( param3 - param4 ))"
          ;;
     mul) 
-         echo "Mul is: $(( param3 * param4 ))"
+         echo "RESULT: $(( param3 * param4 ))"
          ;;
     div)			 	
-         echo "Div is: $(( param3 / param4 ))"
+         echo "RESULT: $(( param3 / param4 ))"
          ;;
       *)
-         echo "#Function calc error" 
+         echo -e "${RED}CALC FUNCTION ERROR${NC}" 
          exit 1
          ;; 
     esac	
@@ -49,8 +58,8 @@ reverse()
 
 strlen()
 {
- echo | awk -v str="$param2"  '{ print "String: " str } 
-                  	       { print "String length:\t" length(str) }'
+  echo | awk -v str="$param2" '{ print "String: " str }
+                  			   { print "RESULT: " length(str)}'
 }
 
 log()
@@ -62,21 +71,13 @@ log()
  # tail -f war | GREP_COLOR='01;36' egrep --color=always 'Warnings|$'
   GREP_COLOR="1;33" grep --color="always" "Warnings" war >> color  
   GREP_COLOR="1;34" grep --color="always" "Information" war >> color
-  rm war  
-  head -n 10 color
-  tail -n 20 color
-  rm color 
+  rm war  && head -n 5 color && tail -n 5 color && rm color 
  # echo "Warnings" | awk '{ gsub("Warnings", "\033[1;33m&\033[0m"); print }'
 }
 
 help()
 {
-  LBLUE='\033[1;34m'
-  WHITE='\033[1;37m'
-  YELLOW='\033[1;33m'
-  ORANGE='\033[0;33m'
-  NC='\033[0m'
-  echo -e "
+   echo -e "
                                          ${WHITE}MANUAL${NC}
         ${YELLOW}=============================================================================${NC}
         ${LBLUE}calc${NC}    - sum/sub/mul/dib [num1] [num2] ${ORANGE}/* calculating numbers             */${NC}
@@ -89,7 +90,7 @@ help()
     
         ${LBLUE}log${NC}     - none                          ${ORANGE}/* output line Warnings/Information
                                                    from /var/log/anaconda/X.log
-                                                   [first 10, last 25] lines       */ ${NC}
+                                                   [first 5, last 5] lines         */ ${NC}
       
         ${LBLUE}exit${NC}    - [return code]                 ${ORANGE}/* exit programm with code         */${NC}   
 
@@ -97,23 +98,41 @@ help()
   "
 }
 
+interactive()
+{
+  echo -e "
+1 - calc
+2 - search
+3 - reverse
+4 - strlen
+5 - log
+6 - exit "
+
+}
+
 case $param1 in 
-  calc)		 
+  calc)
+    clear		 
     calc
     ;;
   search)
+    clear
     search
     ;;
   reverse)
+    clear
     reverse 
     ;;
   strlen)
+    clear
     strlen 
     ;;
   log) 
+    clear
     log 
     ;;
   exit)
+    clear
     if [ -z "$param2" ]
     then 
       echo "exit code: 0"
@@ -124,10 +143,15 @@ case $param1 in
     fi  
     ;;
   help)
+    clear
     help 
-    ;;  
+    ;; 
+  interactive)
+    interactive 
+    ;; 
   *)
-    echo "#Main Loop error"
+    clear
+    echo -e "${RED}SECOND PARAMETER DOSN'T EXIST/NONE${NC}"
     exit 1
     ;;
 esac
