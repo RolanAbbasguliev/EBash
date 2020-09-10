@@ -52,13 +52,23 @@ strlen()
  echo | awk -v str="$param2"  '{ print "String: " str } 
                   	       { print "String length:\t" length(str) }'
 }
+
 log()
 {
   sed -n 's/(WW)/Warnings/gw war' /var/log/anaconda/X.log
   sed -n 's/(II)/Information/gw info' /var/log/anaconda/X.log
-  cat  info >> war  
-  
+  cat info >> war  
+  rm info
+ # tail -f war | GREP_COLOR='01;36' egrep --color=always 'Warnings|$'
+  GREP_COLOR="1;33" grep --color="always" "Warnings" war >> color  
+  GREP_COLOR="1;34" grep --color="always" "Information" war >> color
+  rm war  
+  head -n 10 color
+  tail -n 20 color
+  rm color 
+ # echo "Warnings" | awk '{ gsub("Warnings", "\033[1;33m&\033[0m"); print }'
 }
+
 help()
 {
   clear
@@ -80,6 +90,7 @@ help()
         ======================================================================
   "
 }
+
 case $param1 in 
   calc)		 
     calc
