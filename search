@@ -1,0 +1,12 @@
+#!/bin/bash
+#PROGRAMM FILE: search
+#PROGRAMMER: Rolan Abbasguliev
+
+search() 
+{
+  local file_name=$1
+  local pattern=$2
+  grep -r $pattern $file_name 
+}
+
+

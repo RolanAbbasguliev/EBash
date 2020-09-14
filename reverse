@@ -1,0 +1,16 @@
+#!/bin/bash
+#PROGRAMM FILE: reverse
+#PROGRAMMER: Abbasguliev Rolan
+
+reverse()
+{
+  local file_f=$1
+  local file_s=$2
+  
+  readarray arr < SearchMe/$file_f
+  for ((i=${#arr[*]}; i >= 0; i--))
+  do
+    echo ${arr[$i]} >> SearchMe/$file_s
+  done
+}
+

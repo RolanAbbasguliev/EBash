@@ -1,0 +1,84 @@
+#!/bin/bash
+#PROGRAMM FILE: interactive
+#PROGRAMMER: Rolan Abbasguliev
+source MyColor
+
+menu_draw()
+{
+  echo -e "
+
+        ${WHITE}INTERACTIVE MODE${NC}
+  ${ORANGE}===========================${NC}
+  ${ORANGE}=${NC}    ${RED}a${NC}   |   calc         ${ORANGE}=${NC}         
+  ${ORANGE}=${NC}    ${RED}b${NC}   |   search       ${ORANGE}=${NC}     
+  ${ORANGE}=${NC}    ${RED}c${NC}   |   reverse      ${ORANGE}=${NC} 
+  ${ORANGE}=${NC}    ${RED}d${NC}   |   strlen       ${ORANGE}=${NC} 
+  ${ORANGE}=${NC}    ${RED}e${NC}   |   log          ${ORANGE}=${NC} 
+  ${ORANGE}=${NC}    ${RED}f${NC}   |   exit         ${ORANGE}=${NC} 
+  ${ORANGE}=${NC}    ${RED}g${NC}   |   help         ${ORANGE}=${NC} 
+  ${ORANGE}===========================${NC}
+"
+}
+
+interactive()
+{
+  menu_draw
+  echo -e "Input: \c"
+  read -r key
+  case $key in 
+  a | calc)
+    echo -e "Input operation for numbers: \c"
+    read -r oper
+    echo -e  "Input first num: \c"
+    read -r arg1
+    echo -e "Input second num: \c"
+    read -r arg2 
+    calc "$oper" "$arg1" "$arg2" 
+    interactive  
+    ;;
+  b | search)
+    echo -e "Input dirictory name: \c"
+    read -r dir_name
+    echo -e "Input expresion: \c"
+    read -r ex
+    search "$dir_name" "$ex" 
+    interactive
+    ;;
+  c | reverse) 
+    echo -e "Input first file name: \c"
+    read -r file_f
+    echo -e "Input second file name: \c"
+    read -r file_s
+    reverse "$file_f" "$file_s"
+    interactive
+    ;;
+  d | strlen) 
+    echo -e "Input string: \c" 
+    read -r str 
+    strlen "$str" 
+    interactive
+    ;;
+  e | log)
+    log 
+    interactive 
+    ;;
+  f | exit)
+    echo -e "Input parameter: \c"
+    read -r input
+    clear 
+    exit_code "$input"
+    interactive
+    ;;
+  g | help)
+    help
+    interactive 
+    ;; 
+  *) 
+    echo -e "${RED}NO SUCH KEY ${NC}" 1>&2
+    interactive
+    ;;
+ esac
+}
+
+
+

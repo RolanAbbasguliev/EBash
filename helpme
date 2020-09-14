@@ -1,0 +1,27 @@
+#!/bin/bash
+#PROGRAMM FILE: helpme
+#PROGRAMMER: Rolan Abbasguliev
+source MyColor
+help()
+{
+   echo -e "
+                                         ${WHITE}MANUAL${NC}
+        ${YELLOW}=============================================================================${NC}
+        ${LBLUE}calc${NC}    - sum/sub/mul/dib [num1] [num2] ${ORANGE}/* calculating numbers             */${NC}
+
+        ${LBLUE}search${NC}  - [dir_name]  [reg_expresion]   ${ORANGE}/* search expresion type 
+              	                                   in direcroty files              */${NC}   
+        ${LBLUE}reverse${NC} - [file_name1] [file_name2]     ${ORANGE}/* reverse copy from   
+                                                   file1 -> file2                  */${NC}
+        ${LBLUE}strlen${NC}  - [string]                      ${ORANGE}/* string length                   */${NC}
+    
+        ${LBLUE}log${NC}     - none                          ${ORANGE}/* output line Warnings/Information
+                                                   from /var/log/anaconda/X.log
+                                                   [first 10, last 10] lines       */ ${NC}
+      
+        ${LBLUE}exit${NC}    - [return num code]             ${ORANGE}/* exit programm with code         */${NC}   
+
+        ${YELLOW}=============================================================================${NC} "
+}
+
+

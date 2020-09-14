@@ -1,0 +1,11 @@
+#!/bin/bash
+#PROGRAMM FILE: strlen
+#PROGRAMMER: Rolan Abbasguliev
+
+strlen()
+{ 
+  echo | awk -v str="$1" '{ print "String: " str }
+                  			   { print "RESULT: " length(str)}'
+}
+
+
