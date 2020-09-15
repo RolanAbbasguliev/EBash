@@ -1,0 +1,22 @@
+#!/bin/bash
+#PROGRAMM FILE: script_load
+#PROGRAMMER: Rolan Abbasguliev
+
+declare -a array_func=("MyColor" "alc" "search" "reverse" "strlen" "log" "helpme" "exit_code" "interactive") 
+
+script_load()
+{
+  for var in "${array_func[@]}"
+  do 
+    source $var 
+    if (( $? == 0 )); then
+      echo -e "${GREEN}$var script loaded !${NC}"
+      sleep 0.05
+    else
+      echo -e "${RED}$var script error !${NC}" 1>&2
+      
+    fi
+  done
+}
+
+

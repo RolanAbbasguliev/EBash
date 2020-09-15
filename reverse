@@ -2,11 +2,17 @@
 #PROGRAMM FILE: reverse
 #PROGRAMMER: Abbasguliev Rolan
 
+source MyColor
 reverse()
 {
   local file_f=$1
   local file_s=$2
-  
+  if [[ -f "$file_f" ]]; then
+    echo -e "${RED}No Such file${NC}"
+  fi
+  if [[ -f "$file_s" ]]; then
+    echo -e "${RED}No Such file${NC}"
+  fi
   readarray arr < SearchMe/$file_f
   for ((i=${#arr[*]}; i >= 0; i--))
   do

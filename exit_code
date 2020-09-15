@@ -13,19 +13,17 @@ isnum()
 }
 
 exit_code() 
-{  
- if ! $(isnum $1); then
-   echo -e "${RED}EXIT CODE IS NOT A NUMBER${NC}" 1>&2
-   return -1
- fi 
- if [ -z "$1" ]
- then  
-   echo "exit code: 0"
-   exit 0
- else
-   echo "exit code: $1"
-   exit $param2
-  fi 
-}
+{
+  if [[ -z "$1" ]]; then
+    echo "exit code: 0"
+    exit 0
+  fi
+  if ! $(isnum $1); then
+    echo -e "${RED}EXIT CODE IS NOT A NUMBER${NC}" 1>&2
+    return 0
+  fi     
+  echo "exit code: $1"
+  exit $param2
+} 
 
 

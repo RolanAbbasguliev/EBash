@@ -1,15 +1,9 @@
 #!/bin/bash
-#ROGRAMM FILE: MyScript
+#PROGRAMM FILE: MyScript
 #PROGRAMMER: Abbasguliev Rolan
-source MyColor
-source calc
-source search 
-source reverse
-source strlen
-source log
-source helpme
-source exit_code
-source interactive
+
+source script_load
+script_load
  
 call_func=$1
 param2=$2
@@ -32,7 +26,7 @@ param2=$2
     ;;
   log) 
     clear
-    log 
+    log
     ;;
   exit)
     clear
