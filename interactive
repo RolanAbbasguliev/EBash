@@ -23,7 +23,7 @@ menu_draw()
 interactive()
 {
   menu_draw
-  echo -e "Input: \c"
+  echo -e "Input:\c"
   read -r key
   case $key in 
   a | calc)

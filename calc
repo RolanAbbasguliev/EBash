@@ -16,7 +16,8 @@ calc()
 {  
   call_math=$1
   arg1=$2
-  arg2=$3 
+  arg2=$3
+  
   if ! $(isnum $arg1); then 
     echo -e "${RED}First argument is not number ${NC}" 1>&2 
     return 1
@@ -37,7 +38,11 @@ case $call_math in
    mul) 
      echo "RESULT: $(( arg1 * arg2 ))"
      ;;
-   div)			 	
+   div)		
+     if (( $arg2 == 0 )); then
+       echo -e "${RED}DIV ZERO${NC}" 1>&2
+       return 1
+     fi 	
      echo "RESULT: $(( arg1 / arg2 ))"
      ;;
    *)

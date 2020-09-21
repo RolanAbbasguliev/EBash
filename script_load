@@ -13,11 +13,6 @@ script_load()
       echo -e "${GREEN}$var script loaded !${NC}"
       sleep 0.05
     else
-      for (( i=0; i < 9; i++))
-      do 
-        array_func[i]="load_error" 
-        break
-      done
       echo -e "${RED}$var script error !${NC}" 1>&2
     fi
   done 

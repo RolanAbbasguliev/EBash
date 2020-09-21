@@ -11,14 +11,14 @@ reverse()
 
   if [[ $? != 0 ]]; then
     echo -e "${RED}No Such file: $file_f${NC}"
-    exit -1
+    return 1
   fi
 
   [ -f "$file_s" ]
 
   if [[ $? != 0 ]]; then
     echo -e "${RED}No Such file: $file_s ${NC}"
-    exit -1
+    return 1
   fi
  
   echo -e "${GREEN}Append or Rewrite ? [a/r]${NC}"
@@ -26,7 +26,7 @@ reverse()
   case $ch in 
     a) tac $file_f >> $file_s ;;
     r) tac $file_f > $file_s ;;
-    *) echo -e "${RED}You have no choice${NC}" ;;
+    *) echo -e "${RED}Incorrect choice${NC}" 1>&2 ;;
   esac
 }
 
