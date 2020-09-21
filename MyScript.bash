@@ -44,6 +44,7 @@ case $1 in
     else
       echo -e "${RED}TOO MUCH ARGUMENTS!${NC}" 1>&2
     fi
+   
     
     strlen "$2" 
     ;;
