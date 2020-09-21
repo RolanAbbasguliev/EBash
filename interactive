@@ -53,7 +53,7 @@ interactive()
     interactive
     ;;
   d | strlen) 
-    echo -e "Input string: \c" 
+    echo -e "Input string:\c" 
     read -r str 
     strlen "$str" 
     interactive
