@@ -13,13 +13,6 @@ reverse()
     echo -e "${RED}No Such file: $file_f${NC}"
     return 1
   fi
-
-  [ -f "$file_s" ]
-
-  if [[ $? != 0 ]]; then
-    echo -e "${RED}No Such file: $file_s ${NC}"
-    return 1
-  fi
  
   echo -e "${GREEN}Append or Rewrite ? [a/r]${NC}"
   read -r ch
