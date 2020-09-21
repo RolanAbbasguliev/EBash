@@ -7,16 +7,26 @@ reverse()
 {
   local file_f=$1
   local file_s=$2
-  if [[ -f "$file_f" ]]; then
-    echo -e "${RED}No Such file${NC}"
+  [ -f "$file_f" ]
+
+  if [[ $? != 0 ]]; then
+    echo -e "${RED}No Such file: $file_f${NC}"
+    exit -1
   fi
-  if [[ -f "$file_s" ]]; then
-    echo -e "${RED}No Such file${NC}"
+
+  [ -f "$file_s" ]
+
+  if [[ $? != 0 ]]; then
+    echo -e "${RED}No Such file: $file_s ${NC}"
+    exit -1
   fi
-  readarray arr < SearchMe/$file_f
-  for ((i=${#arr[*]}; i >= 0; i--))
-  do
-    echo ${arr[$i]} >> SearchMe/$file_s
-  done
+ 
+  echo -e "${GREEN}Append or Rewrite ? [a/r]${NC}"
+  read -r ch
+  case $ch in 
+    a) tac $file_f >> $file_s ;;
+    r) tac $file_f > $file_s ;;
+    *) echo -e "${RED}You have no choice${NC}" ;;
+  esac
 }
 
