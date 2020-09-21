@@ -2,10 +2,11 @@
 #PROGRAMM FILE: helpme
 #PROGRAMMER: Rolan Abbasguliev
 source MyColor
-help()
+
+help_me()
 {
    echo -e "
-                                         ${WHITE}MANUAL${NC}
+                                            ${WHITE}MANUAL${NC}
         ${YELLOW}=============================================================================${NC}
         ${LBLUE}calc${NC}    - sum/sub/mul/dib [num1] [num2] ${ORANGE}/* calculating numbers             */${NC}
 
@@ -20,6 +21,8 @@ help()
                                                    [first 10, last 10] lines       */ ${NC}
       
         ${LBLUE}exit${NC}    - [return num code]             ${ORANGE}/* exit programm with code         */${NC}   
+    
+   
 
         ${YELLOW}=============================================================================${NC} "
 }

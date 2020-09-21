@@ -2,7 +2,7 @@
 #PROGRAMM FILE: script_load
 #PROGRAMMER: Rolan Abbasguliev
 
-declare -a array_func=("MyColor" "alc" "search" "reverse" "strlen" "log" "helpme" "exit_code" "interactive") 
+declare -ga array_func=("MyColor" "calc" "search" "reverse" "strlen" "log" "helpme" "exit_code" "interactive") 
 
 script_load()
 {
@@ -13,10 +13,14 @@ script_load()
       echo -e "${GREEN}$var script loaded !${NC}"
       sleep 0.05
     else
+      for (( i=0; i < 9; i++))
+      do 
+        array_func[i]="load_error" 
+        break
+      done
       echo -e "${RED}$var script error !${NC}" 1>&2
-      
     fi
-  done
+  done 
 }
 
 
