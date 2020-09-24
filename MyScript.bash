@@ -1,7 +1,12 @@
-
-#!/bin/bash
+#!/usr/bin/env bash
 #PROGRAMM FILE: MyScript
 #PROGRAMMER: Abbasguliev Rolan
+
+#safe mode
+set -o pipefail
+
+#Correction woring globbing 
+shopt -s nullglob
 
 source script_load
 script_load
@@ -37,7 +42,7 @@ case $1 in
 
     reverse "$2" "$3"
     ;;
-  strlen)
+  srlen)
     clear
     if [[ -z $3 ]]; then
       true

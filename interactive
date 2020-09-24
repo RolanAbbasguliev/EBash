@@ -29,6 +29,15 @@ interactive()
   a | calc)
     echo -e "Input operation for numbers: \c"
     read -r oper
+    if [ "$oper" == "+" ]; then
+      oper="sum"
+    elif [ "$oper" == "-" ]; then 
+      oper="sub"
+    elif [ "$oper" == "*" ]; then
+      oper="mul"
+    elif [ "$oper" == "/" ]; then
+      oper="div"
+    fi
     echo -e  "Input first num: \c"
     read -r arg1
     echo -e "Input second num: \c"
