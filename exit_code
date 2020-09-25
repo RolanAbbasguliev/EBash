@@ -23,7 +23,7 @@ exit_code()
     return 0
   fi     
   echo "exit code: $1"
-  exit $param2
+  exit "$1"
 } 
 
 
